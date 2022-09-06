@@ -9,7 +9,7 @@ myheading1='Predicting Home Sale Prices in Ames, Iowa'
 image1='ames_welcome.jpeg'
 tabtitle = 'Ames Housing'
 sourceurl = 'http://jse.amstat.org/v19n3/decock.pdf'
-githublink = 'https://github.com/astever31/501-linear-reg-ames-housing'
+githublink = 'https://github.com/plotly-dash-apps/501-linear-reg-ames-housing'
 
 
 ########### Initiate the app
@@ -57,7 +57,7 @@ app.layout = html.Div(children=[
     html.Br(),
     html.Br(),
     html.H4('Regression Equation:'),
-    html.Div('Predicted Price = (- $1,360.5K Baseline) + ($0.7K * Year Built) + ($12.7K * Bathrooms) + (- $7.7K * Bedrooms) + ($0.049K * Total Square Feet) + ($ 25.2K * Single Family Home) + (- $6.6 K * Large Neighborhood) + ($2,015 * Garage Attached)'),
+    html.Div('Predicted Price = (- $1,360.5K Baseline) + ($0.7K * Year Built) + ($12.7K * Bathrooms) + (- $7.7K * Bedrooms) + ($0.049K * Total Square Feet) + ($ 25.2K * Single Family Home) + (- $6.6 K * Large Neighborhood)'),
     html.Br(),
     html.A('Google Spreadsheet', href='https://docs.google.com/spreadsheets/d/1q2ustRvY-GcmPO5NYudvsBEGNs5Na5p_8LMeS4oM35U/edit?usp=sharing'),
     html.Br(),
@@ -77,15 +77,14 @@ app.layout = html.Div(children=[
     State(component_id='BedroomAbvGr', component_property='value'),
     State(component_id='TotalSF', component_property='value'),
     State(component_id='SingleFam', component_property='value'),
-    State(component_id='LargeNeighborhood', component_property='value'),
-    State(component_id='AttachGarage', component_property='value')
+    State(component_id='LargeNeighborhood', component_property='value')
 
 )
-def ames_lr_function(clicks, YearBuilt,Bathrooms,BedroomAbvGr,TotalSF,SingleFam,LargeNeighborhood,AttachGarage):
+def ames_lr_function(clicks, YearBuilt,Bathrooms,BedroomAbvGr,TotalSF,SingleFam,LargeNeighborhood):
     if clicks==0:
         return "waiting for inputs"
     else:
-        y = [-1331325.0361 + 689.3684*YearBuilt + 12870.1812*Bathrooms + -7715.49*BedroomAbvGr + 49.4964*TotalSF+ 24943.6231*SingleFam+ -6713.5405*LargeNeighborhood+ 2014.9801*AttachGarage]
+        y = [-1360501.3809 + 704.4287*YearBuilt + 12738.4775*Bathrooms + -7783.1712*BedroomAbvGr + 49.824*TotalSF+ 25282.091*SingleFam+ -6637.2636*LargeNeighborhood]
         formatted_y = "${:,.2f}".format(y[0])
         return formatted_y
 
