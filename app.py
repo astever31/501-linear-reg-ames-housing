@@ -83,7 +83,7 @@ app.layout = html.Div(children=[
     State(component_id='SingleFam', component_property='value'),
     State(component_id='LargeNeighborhood', component_property='value'),
     State(component_id='AttachGarage', component_property='value'),
-    tate(component_id='GarageArea', component_property='value')
+    State(component_id='GarageArea', component_property='value')
 
 )
 def ames_lr_function(clicks, YearBuilt,Bathrooms,BedroomAbvGr,TotalSF,SingleFam,LargeNeighborhood,AttachGarage,GarageArea):
