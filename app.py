@@ -39,6 +39,8 @@ app.layout = html.Div(children=[
                 dcc.Input(id='LargeNeighborhood', value=0, type='number', min=0, max=1, step=1),
                 html.Div('Garage Attached:'),
                 dcc.Input(id='AttachGarage', value=0, type='number', min=0, max=1, step=1),
+                html.Div('Garage Area:'),
+                dcc.Input(id='GarageArea', value=330, type='number', min=0, max=1400, step=1),
 
             ], className='four columns'),
             html.Div([
@@ -59,7 +61,7 @@ app.layout = html.Div(children=[
     html.Br(),
     html.Br(),
     html.H4('Regression Equation:'),
-    html.Div('Predicted Price = (- $1,360.5K Baseline) + ($0.7K * Year Built) + ($12.7K * Bathrooms) + (- $7.7K * Bedrooms) + ($0.049K * Total Square Feet) + ($ 25.2K * Single Family Home) + (- $6.6 K * Large Neighborhood) + ($2,015 * Garage Attached)'),
+    html.Div('Predicted Price = (- $923k Baseline) + ($0.47k * Year Built) + ($9.98k * Bathrooms) + (- $7.8k * Bedrooms) + ($0.05k * Total Square Feet) + ($ 21.1k * Single Family Home) + (- $9.57k * Large Neighborhood) + ($1.76k * Garage Attached) + ($0.06k * Garage Area)'),
     html.Br(),
     html.A('Google Spreadsheet', href='https://docs.google.com/spreadsheets/d/1q2ustRvY-GcmPO5NYudvsBEGNs5Na5p_8LMeS4oM35U/edit?usp=sharing'),
     html.Br(),
@@ -80,14 +82,15 @@ app.layout = html.Div(children=[
     State(component_id='TotalSF', component_property='value'),
     State(component_id='SingleFam', component_property='value'),
     State(component_id='LargeNeighborhood', component_property='value'),
-    State(component_id='AttachGarage', component_property='value')
+    State(component_id='AttachGarage', component_property='value'),
+    tate(component_id='GarageArea', component_property='value')
 
 )
-def ames_lr_function(clicks, YearBuilt,Bathrooms,BedroomAbvGr,TotalSF,SingleFam,LargeNeighborhood,AttachGarage):
+def ames_lr_function(clicks, YearBuilt,Bathrooms,BedroomAbvGr,TotalSF,SingleFam,LargeNeighborhood,AttachGarage,GarageArea):
     if clicks==0:
         return "waiting for inputs"
     else:
-        y = [-1331325.0361 + 689.3684*YearBuilt + 12870.1812*Bathrooms + -7715.49*BedroomAbvGr + 49.4964*TotalSF+ 24943.6231*SingleFam+ -6713.5405*LargeNeighborhood+ 2014.9801*AttachGarage]
+        y = [-923016.2639 + 472.3298*YearBuilt + 9980.3946*Bathrooms + -7798.2863*BedroomAbvGr + 50.7497*TotalSF+ 21060.817*SingleFam+ -9567.691*LargeNeighborhood+ 1759.6697*AttachGarage+ 59.2904*GarageArea]
         formatted_y = "${:,.2f}".format(y[0])
         return formatted_y
 
